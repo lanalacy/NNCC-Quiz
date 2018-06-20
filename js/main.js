@@ -1,8 +1,21 @@
+$.wait = function(ms) {
+    var defer = $.Deferred();
+    setTimeout(function() { defer.resolve(); }, ms);
+    return defer;
+};
+
 //Structure initializing
 $(document).ready(function() {
     $("#Q2").hide();
     $("#Q3").hide();
     $("#Q4").hide();
+});
+
+//Restart init
+$("#replay").click(function(){
+
+    location.reload();
+
 });
 
 //Q1
@@ -32,12 +45,15 @@ var q3b5State = false;
 var q3b6State = false;
 var q3b7State = false;
 var q3b8State = false;
+var q3b9State = false;
 var q3Status = 0;
 
 //Final solutions
 var q1Solution = "";
 var q2Solution = [];
 var q3Solution = [];
+
+
 
 
 
@@ -123,9 +139,10 @@ $("#q1b6").click(function() {
 $("#q1b1, #q1b2, #q1b3, #q1b4, #q1b5, #q1b6").click(function() {
     $("#aDebug").text("Q1 =" + q1Solution);
     $("#Q2").show();
+    
     $('html, body').animate({
             scrollTop: $("#Q2").offset().top
-        }, 1500);
+        }, 1000);
 });
 
 //Q2 statements
@@ -224,9 +241,10 @@ $("#q2b1, #q2b2, #q2b3, #q2b4, #q2b5, #q2b6").click(function() {
     if (q2Status == 1) {
         $("#aDebug").text("Q2 =" + q2Solution);
         $("#Q3").show();
+
         $('html, body').animate({
             scrollTop: $("#Q3").offset().top
-        }, 1500);
+        }, 1000);
     }
 
 
@@ -440,6 +458,25 @@ $("#q3b8").click(function() {
         }
 });
 
+$("#q3b9").click(function() {
+
+    if (q3b9State == false) {
+        q3b9State = true;
+        q3Status = q3Status + 1;
+        $(this).addClass('active');
+
+        var buttonContent = $(event.target).text();
+        q3Solution.push(buttonContent);
+    }
+    else {q3b9State = false;
+        q3Status = q3Status - 1;
+        $(this).removeClass('active');
+
+        var buttonContent = $(event.target).text();
+        //Need to remove the specific text from the array using this.
+        }
+});
+
 $("#endButton").click(function(){
 
     $("#Q4").show();
@@ -447,163 +484,121 @@ $("#endButton").click(function(){
         $("#Q2").hide();
         $("#Q1").hide();
         $("#intro").hide();
+       
         //Assess the final content in the array
+
+        if (q1Solution == "A1") {
+            A1();
+        }
+        else if (q1Solution == "A2") {
+            A2();
+        }
+        else if (q1Solution == "A3") {
+            A3();
+        }
+        else if (q1Solution == "A4") {
+            A4();
+        }
+        else if (q1Solution == "A5") {
+            A5();
+        }
+        else if (q1Solution == "A6") {
+            A6();
+        }
+        else if (q1Solution == "B1") {
+            B1();
+        }
+        else if (q1Solution == "B2") {
+            B2();
+        }
+        else if (q1Solution == "B3") {
+            B3();
+        }
+        else if (q1Solution == "B4") {
+            B4();
+        }
+        else if (q1Solution == "B5") {
+            B5();
+        }
+        else if (q1Solution == "B6") {
+            B6();
+        }
+        else if (q1Solution == "C1") {
+            C1();
+        }
+        else if (q1Solution == "C2") {
+            C2();
+        }
+        else if (q1Solution == "C3") {
+            C3();
+        }
+        else if (q1Solution == "C4") {
+            C4();
+        }
+        else if (q1Solution == "C5") {
+            C5();
+        }
+        else if (q1Solution == "C6") {
+            C6();
+        }
+        else if (q1Solution == "D1") {
+            D1();
+        }
+        else if (q1Solution == "D2") {
+            D2();
+        }
+        else if (q1Solution == "D3") {
+            D3();
+        }
+        else if (q1Solution == "D4") {
+            D4();
+        }
+        else if (q1Solution == "D5") {
+            D5();
+        }
+        else if (q1Solution == "D6") {
+            D6();
+        }
+        else if (q1Solution == "E1") {
+            E1();
+        }
+        else if (q1Solution == "E2") {
+            E2();
+        }
+        else if (q1Solution == "E3") {
+            E3();
+        }
+        else if (q1Solution == "E4") {
+            E4();
+        }
+        else if (q1Solution == "E5") {
+            E5();
+        }
+        else if (q1Solution == "E6") {
+            E6();
+        }
+        else if (q1Solution == "F1") {
+            F1();
+        }
+        else if (q1Solution == "F2") {
+            F2();
+        }
+        else if (q1Solution == "F3") {
+            F3();
+        }
+        else if (q1Solution == "F4") {
+            F4();
+        }
+        else if (q1Solution == "F5") {
+            F5();
+        }
+        else if (q1Solution == "F6") {
+            F6();
+        }
+
+         $('html, body').animate({
+            scrollTop: $("#Q4").offset().top
+        }, 1000);
+
     });
 
-//You can cut out the rest of the left over box code
-
-/* $("#q3b1, #q3b2, #q3b3, #q3b4, #q3b5, #q3b6, #q3b7, #q3b8").click(function() {
-
-    if (q2Status == 1) {
-        $("#aDebug").text("Q2 =" + q3Solution);
-        $("#Q4").show();
-        $("#Q3").hide();
-        $("#Q2").hide();
-        $("#Q1").hide();
-        $("#intro").hide();
-        $('html, body').animate({
-            scrollTop: $("#Q4").offset().top
-        }, 1500);
-    }
-
-
-
-}); */
-
-
-//Big boxes, jesus
-
-//Row 1
-
-
-$("#box1").click(function() {
-
-    if ($(this).hasClass('active-box')) {
-
-        $(this).removeClass('active-box');
-
-    } else {
-        $(this).addClass('active-box');
-        var buttonContent = $(event.target).text();
-        q3Solution.push(buttonContent);
-        console.log(buttonContent);
-    };
-
-});
-$("#box2").click(function() {
-
-    if ($(this).hasClass('active-box')) {
-
-        $(this).removeClass('active-box');
-
-    } else {
-        $(this).addClass('active-box');
-        var buttonContent = $(event.target).text();
-        q3Solution.push(buttonContent);
-        console.log(buttonContent);
-    };
-
-});
-$("#box3").click(function() {
-
-    if ($(this).hasClass('active-box')) {
-
-        $(this).removeClass('active-box');
-
-    } else {
-        $(this).addClass('active-box');
-        var buttonContent = $(event.target).text();
-        q3Solution.push(buttonContent);
-        console.log(buttonContent);
-    };
-
-});
-$("#box4").click(function() {
-
-    if ($(this).hasClass('active-box')) {
-
-        $(this).removeClass('active-box');
-
-    } else {
-        $(this).addClass('active-box');
-        var buttonContent = $(event.target).text();
-        q3Solution.push(buttonContent);
-        console.log(buttonContent);
-    };
-
-});
-
-//Row 2
-
-$("#box5").click(function() {
-
-    if ($(this).hasClass('active-box')) {
-
-        $(this).removeClass('active-box');
-
-    } else {
-        $(this).addClass('active-box');
-        var buttonContent = $(event.target).text();
-        q3Solution.push(buttonContent);
-        console.log(buttonContent);
-    };
-
-});
-$("#box6").click(function() {
-
-    if ($(this).hasClass('active-box')) {
-
-        $(this).removeClass('active-box');
-
-    } else {
-        $(this).addClass('active-box');
-        var buttonContent = $(event.target).text();
-        q3Solution.push(buttonContent);
-        console.log(buttonContent);
-    };
-
-});
-$("#box7").click(function() {
-
-    if ($(this).hasClass('active-box')) {
-
-        $(this).removeClass('active-box');
-
-    } else {
-        $(this).addClass('active-box');
-        var buttonContent = $(event.target).text();
-        q3Solution.push(buttonContent);
-        console.log(buttonContent);
-    };
-
-});
-$("#box8").click(function() {
-
-    if ($(this).hasClass('active-box')) {
-
-        $(this).removeClass('active-box');
-
-    } else {
-        $(this).addClass('active-box');
-        var buttonContent = $(event.target).text();
-        q3Solution.push(buttonContent);
-        console.log(buttonContent);
-    };
-
-});
-
-$("#q3NP").click(function() {
-
-    $("#aDebug").text("Q3 =" + q3Solution);
-
-});
-
-
-
-//The logic should let a user click a button and check how many buttons have been clicked. If under 2, let them click another or the same button, if exactly 2, kill the function until they click one that's active, which'll bring them back down to 1 or 0.
-
-//Make a template where only one button in a row can be clicked, and another where multiple can be.
-
-//Maybe the buttons can have a "true" class, and jquery can check each respective chapter's buttons for said 'true' buttons and their attatched number when pressing the "next page" ID.
-
-//In the background after the page is over (when someone presses next page) it can select the outcome based on what the user chose, and display it when the overall quiz is over.
